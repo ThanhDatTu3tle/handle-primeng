@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MegaMenuItem, MenuItem } from 'primeng/api';
+import { url } from 'inspector';
+import { MegaMenuItem } from 'primeng/api';
 import { MegaMenuModule } from 'primeng/megamenu';
 
 // import { MegaMenuService } from './megahorizontalmenu.service';
@@ -579,153 +580,40 @@ export class MegaHorizontalmenuComponent {
   // constructor(public megaMenuService: MegaMenuService) {}
 
   ngOnInit() {
-
-    this.megaMenuItems = this.megaMenuData.map(function(item: any) {
-      // const result = [];
-      // if (item.label_parent)
-      // console.log(x)
-      // console.log(result.push(x))
-      // return result.push(x);
-    })
-
-    // this.megaMenuItems = [
-    //   {
-    //     label: 'Dashboard',
-    //     icon: 'pi pi-fw pi-chart-bar',
-    //     items: [
-    //       [
-    //         {
-    //           label: 'Dashboard',
-    //           items: [
-    //             { label: 'Summary', icon: 'pi pi-fw pi-chart-line' }, 
-    //             { label: 'Sell Out', icon: 'pi pi-fw pi-chart-pie' }
-    //           ]
-    //         }
-    //       ]
-    //     ]
-    //   },
-    //   {
-    //     label: 'Report',
-    //     icon: 'pi pi-fw pi-file-excel',
-    //     items: [
-    //       [
-    //         {
-    //           label: 'Report',
-    //           items: [
-    //             { label: 'Kết quả cửa hàng', icon: 'pi pi-fw pi-file-pdf' }, 
-    //             { label: 'Kết quả báo cáo', icon: 'pi pi-fw pi-file-word' },
-    //             { label: 'DISPLAY', icon: 'pi pi-fw pi-list' }, 
-    //             { label: 'OSA', icon: 'pi pi-fw pi-list' },
-    //             { label: 'OOL0', icon: 'pi pi-fw pi-list' }, 
-    //             { label: 'Kết quả báo cáo Sell Out', icon: 'pi pi-fw pi-list' },
-    //             { label: 'Sell In', icon: 'pi pi-fw pi-list' }
-    //           ]
-    //         }
-    //       ]
-    //     ]
-    //   },
-    //   {
-    //     label: 'Project',
-    //     icon: 'pi pi-fw pi-box',
-    //     items: [
-    //       [
-    //         {
-    //           label: 'Project',
-    //           items: [
-    //             { label: 'Quản lý nhân viên', icon: 'pi pi-fw pi-users' }, 
-    //             { label: 'Quản lý cửa hàng', icon: 'pi pi-fw pi-home' },
-    //             { label: 'Quản lý LLV', icon: 'pi pi-fw pi-calendar-plus' }
-    //           ]
-    //         }
-    //       ]
-    //     ]
-    //   },
-    //   {
-    //     label: 'Master',
-    //     icon: 'pi pi-fw pi-user-plus',
-    //     items: [
-    //       [
-    //         {
-    //           label: 'Master',
-    //           items: [
-    //             { label: 'Ca làm việc', icon: 'pi pi-fw pi-book' }, 
-    //             { label: 'KPI Scheduler', icon: 'pi pi-fw pi-calendar' },
-    //             { label: 'Danh sách sản phẩm', icon: 'pi pi-fw pi-align-justify' }, 
-    //             { label: 'Ngành hàng', icon: 'pi pi-fw pi-th-large' },
-    //             { label: 'Ngôn ngữ', icon: 'pi pi-fw pi-language' }
-    //           ]
-    //         }
-    //       ]
-    //     ]
-    //   },
-    //   {
-    //     label: 'POSM',
-    //     icon: 'pi pi-fw pi-briefcase',
-    //     items: [
-    //       [
-    //         {
-    //           label: 'POSM',
-    //           items: [
-    //             { label: 'Shop POSM', icon: 'pi pi-fw pi-briefcase' }, 
-    //             { label: 'Item POSM', icon: 'pi pi-fw pi-th-large' }
-    //           ]
-    //         }
-    //       ]
-    //     ]
-    //   },
-    //   {
-    //     label: 'OSA',
-    //     icon: 'pi pi-fw pi-box',
-    //     items: [
-    //       [
-    //         {
-    //           label: 'OSA',
-    //           items: [{ label: 'Đăng ký OSA', icon: 'pi pi-fw pi-box' }]
-    //         }
-    //       ]
-    //     ]
-    //   },
-    //   {
-    //     label: 'SURVEY',
-    //     icon: 'pi pi-fw pi-align-left',
-    //     items: [
-    //       [
-    //         {
-    //           label: 'Survey',
-    //           items: [
-    //             { label: 'Event 1.1' }, 
-    //             { label: 'Event 1.2' }
-    //           ]
-    //         }
-    //       ]
-    //     ]
-    //   },
-    //   {
-    //     label: 'Master',
-    //     icon: 'pi pi-fw pi-cog',
-    //     items: [
-    //       [
-    //         {
-    //           label: 'Setting 1',
-    //           items: [{ label: 'Setting 1.1' }, { label: 'Setting 1.2' }]
-    //         },
-    //         {
-    //           label: 'Setting 2',
-    //           items: [{ label: 'Setting 2.1' }, { label: 'Setting 2.2' }]
-    //         },
-    //         {
-    //           label: 'Setting 3',
-    //           items: [{ label: 'Setting 3.1' }, { label: 'Setting 3.2' }]
-    //         }
-    //       ],
-    //       [
-    //         {
-    //           label: 'Technology 4',
-    //           items: [{ label: 'Setting 4.1' }, { label: 'Setting 4.2' }]
-    //         }
-    //       ]
-    //     ]
-    //   }
-    // ]
+    let resultArr = [];
+    let formatedMegaMenuItems = this.megaMenuData.reduce(function (acc: any, cur: any) {
+      let itemFound = acc.find(function(item: any) {
+        return item[0].label_parent === cur.label_parent;
+      });
+      if (itemFound) {
+        itemFound.push(cur);
+      } else {
+        acc.push([cur]);
+      }
+      return acc;
+    }, []);
+    let resultItem = formatedMegaMenuItems.map((item: any) => {
+      let x = {};
+      return x = {
+        label: `${item[0].label_parent}`,
+        // icon: `${item.icon}`,
+        items: [
+          [
+            {
+              label: `${item[0].label_parent}`,
+              items: item.map((itemChild: any) => (
+                {
+                  label: `${itemChild.label}`,
+                  icon: `${itemChild.icon}`,
+                  url: `${itemChild.routerLink}`
+                }
+              ))
+            }
+          ]
+        ]
+      };
+    });
+    resultArr.push(resultItem);
+    this.megaMenuItems = resultArr[0];
   }
 }
