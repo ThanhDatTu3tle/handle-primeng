@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
 
-import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { ButtonModule } from 'primeng/button';
-import { SidebarModule } from 'primeng/sidebar';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [BreadcrumbModule, ButtonModule, SidebarModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss',
   '../../../../node_modules/primeflex/primeflex.css']

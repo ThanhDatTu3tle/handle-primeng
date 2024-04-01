@@ -8,8 +8,7 @@ import { Injectable } from '@angular/core';
 export class MegaMenuService {
   constructor(private http: HttpClient) {}
  
-  getAll() {
-  }
+  getAll() {}
 }
 
 
